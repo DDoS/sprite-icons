@@ -1,0 +1,6 @@
+name "sprite-icons"
+description "Convert the DS-style 64x64 project sprites to icons"
+copyright "Copyright © 2017, Aleksi Sapon"
+authors "Aleksi Sapon"
+targetPath "bin"
+dependency "derelict-fi" version=">=0.0.0"
