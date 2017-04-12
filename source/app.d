@@ -135,7 +135,7 @@ string createJson(string[size_t] idToFile) {
     foreach (id, file; idToFile) {
         auto idString = format("id%s", id);
         auto url = format(GH_REPO_RAW_FORMAT, file);
-        json[idString] = url;
+        json[idString] = ["url" : url];
     }
     return toJSON(json, true);
 }
