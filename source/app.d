@@ -3,7 +3,7 @@ import std.file : dirEntries, exists, isDir, mkdirRecurse, write, DirEntry, Span
 import std.regex : regex, matchAll;
 import std.string : toStringz, format;
 import std.conv : to;
-import std.json : toJSON, JSONValue;
+import std.json : JSONValue;
 
 import derelict.freeimage.freeimage;
 
@@ -41,19 +41,25 @@ void main(string[] args) {
     sourceDir.buildPath("GenII").convertGen(outputDir, idToFile);
     //sourceDir.buildPath("GenIII").convertGen(outputDir, idToFile);
 
+    foreach (i; 1 .. 252) {
+        if (i !in idToFile) {
+            throw new Exception(format("Missing ID: %d", i));
+        }
+    }
+
     auto json = createJson(idToFile);
     outputDir.buildPath("icons.json").write(json);
 }
 
 void convertGen(string sourceDir, string outputDir, ref string[size_t] idToFile) {
-    auto threeNumImage = regex(r"(\d\d\d)\.png");
+    auto numberedImage = regex(r"(\d+)\.png");
 
     foreach (DirEntry file; dirEntries(sourceDir, SpanMode.shallow)) {
         if (!file.isFile) {
             continue;
         }
 
-        auto numberText = file.name.matchAll(threeNumImage);
+        auto numberText = file.name.matchAll(numberedImage);
         if (numberText.empty()) {
             continue;
         }
@@ -137,5 +143,5 @@ string createJson(string[size_t] idToFile) {
         auto url = format(GH_REPO_RAW_FORMAT, file);
         json[idString] = ["url" : url];
     }
-    return toJSON(json, true);
+    return json.toPrettyString();
 }

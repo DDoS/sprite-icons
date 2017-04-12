@@ -341,6 +341,9 @@
     "id200": {
         "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/200.png"
     },
+    "id201": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/201.png"
+    },
     "id202": {
         "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/202.png"
     },
@@ -718,6 +721,12 @@
     },
     "id9": {
         "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/9.png"
+    },
+    "id90": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/90.png"
+    },
+    "id91": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/91.png"
     },
     "id92": {
         "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output\/92.png"
