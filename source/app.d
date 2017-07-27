@@ -1,13 +1,19 @@
 import std.path : buildPath;
-import std.file : dirEntries, exists, isDir, mkdirRecurse, write, DirEntry, SpanMode;
+import std.file : DirEntry, SpanMode, dirEntries, exists, isDir, mkdirRecurse, write, readText;
 import std.regex : regex, matchAll;
 import std.string : toStringz, format;
 import std.conv : to;
 import std.json : JSONValue;
-import std.math : sqrt, pow, abs, sin, cos, acos;
+import std.csv : csvReader;
+import std.math : PI, sqrt, abs, sin, cos, acos;
+import std.algorithm.searching : canFind, findSplitBefore;
 import std.algorithm.sorting : sort;
 
 import derelict.freeimage.freeimage;
+
+import dlangui.platforms.common.startup : initResourceManagers, initFontManager;
+import dlangui.graphics.drawbuf : GrayDrawBuf;
+import dlangui.graphics.fonts : Font, FontManager, FontWeight, FontFamily;
 
 enum ICON_SIZE = 64;
 
@@ -15,6 +21,8 @@ enum REPO_USER = "DDoS";
 enum REPO_NAME = "sprite-icons";
 enum GH_REPO_RAW_FORMAT = "https://raw.githubusercontent.com/" ~ REPO_USER ~ "/"
         ~ REPO_NAME ~ "/master/%s";
+
+alias IconPixels = Pixel[ICON_SIZE * ICON_SIZE];
 
 struct Pixel {
     float r = 0;
@@ -26,7 +34,7 @@ struct Pixel {
     alias s = g;
     alias v = b;
 
-    this(ubyte r, ubyte g, ubyte b, ubyte a = ubyte.max) {
+    this(int r, int g, int b, int a = ubyte.max) {
         this.r = cast(float) r / ubyte.max;
         this.g = cast(float) g / ubyte.max;
         this.b = cast(float) b / ubyte.max;
@@ -61,12 +69,12 @@ struct Pixel {
         return Pixel(rn, gn, bn, an);
     }
 
-    Pixel opBinary(string op)(int factor)
+    Pixel opBinary(string op)(float factor)
             if (op == "+" || op == "-" || op == "*" || op == "/" || op == "%") {
         auto rn = mixin("this.r " ~ op ~ " factor");
         auto gn = mixin("this.g " ~ op ~ " factor");
         auto bn = mixin("this.b " ~ op ~ " factor");
-        auto an =  mixin("this.a " ~ op ~ " factor");
+        auto an = mixin("this.a " ~ op ~ " factor");
         return Pixel(rn, gn, bn, an);
     }
 
@@ -75,7 +83,7 @@ struct Pixel {
         return this;
     }
 
-    Pixel opOpAssign(string op)(int factor) {
+    Pixel opOpAssign(string op)(float factor) {
         this = mixin("this " ~ op ~ " factor");
         return this;
     }
@@ -89,8 +97,6 @@ struct Pixel {
         return this.dot(this).sqrt();
     }
 }
-
-alias IconPixels = Pixel[ICON_SIZE * ICON_SIZE];
 
 void main(string[] args) {
     assert(args.length == 3);
@@ -118,7 +124,7 @@ void createIcons(string sourceDir, string outputDir) {
 
     sourceDir.buildPath("GenI").processGenIcons!convertIcon();
     sourceDir.buildPath("GenII").processGenIcons!convertIcon();
-    //sourceDir.buildPath("GenIII").convertGen(outputDir, idToFile);
+    //sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
 
     foreach (i; 1 .. 252) {
         if (i !in idToFile) {
@@ -131,14 +137,31 @@ void createIcons(string sourceDir, string outputDir) {
 }
 
 void createMinimalIcons(string sourceDir, string outputDir) {
+    auto nameById = loadPokemonNames();
+    initResourceManagers();
+    initFontManager();
+    auto font = FontManager.instance.getFont(12, FontWeight.Normal, false, FontFamily.SansSerif, "Helvetica Neue Light");
+
+    string[size_t] idToFile;
+
     void convertIcon(size_t id, ref IconPixels icon) {
+        if (id != 1) {
+        //    return;
+        }
         makeTransparent(icon);
-        Pixel a, b;
-        findPrimaryColourPair(id, icon, a, b);
-        saveIcon(id, icon, outputDir);
+        Pixel colourA, colourB;
+        findPrimaryColourPair(id, icon, colourA, colourB);
+        int width, height;
+        auto minimalIcon = createMinimalIcon(id, nameById[id], font, colourA, colourB, width, height);
+        idToFile[id] = saveIcon(id, minimalIcon, width, height, outputDir);
     }
 
     sourceDir.buildPath("GenI").processGenIcons!convertIcon();
+    sourceDir.buildPath("GenII").processGenIcons!convertIcon();
+    //sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
+
+    auto json = createJson(idToFile);
+    outputDir.buildPath("icons.json").write(json);
 }
 
 void processGenIcons(alias processor)(string sourceDir) {
@@ -161,28 +184,6 @@ void processGenIcons(alias processor)(string sourceDir) {
         loadIcon(file, icon);
         processor(number, icon);
     }
-}
-
-void loadIcon(string spriteFile, ref IconPixels destination) {
-    FIBITMAP *bitmap = FreeImage_Load(FIF_PNG, spriteFile.toStringz());
-    assert (bitmap);
-
-    auto width = FreeImage_GetWidth(bitmap);
-    auto height = FreeImage_GetHeight(bitmap);
-    assert (width >= ICON_SIZE);
-    assert (height >= ICON_SIZE);
-
-    auto pixelSize = FreeImage_GetLine(bitmap) / width;
-    foreach (y; 0 .. ICON_SIZE) {
-        auto line = FreeImage_GetScanLine(bitmap, y);
-        foreach (x; 0 .. ICON_SIZE) {
-            destination[x + (ICON_SIZE - 1 - y) * ICON_SIZE] =
-                    Pixel(line[FI_RGBA_RED], line[FI_RGBA_GREEN], line[FI_RGBA_BLUE]);
-            line += pixelSize;
-        }
-    }
-
-    FreeImage_Unload(bitmap);
 }
 
 void makeTransparent(ref IconPixels icon) {
@@ -210,7 +211,6 @@ void findPrimaryColourPair(size_t id, ref IconPixels icon, ref Pixel colourA, re
             // Skip transparent pixels
             continue;
         }
-        colourTotal += 1;
         // Search for the colour in an existing bucket
         size_t minIndex = -1;
         auto minDist = float.max;
@@ -233,15 +233,13 @@ void findPrimaryColourPair(size_t id, ref IconPixels icon, ref Pixel colourA, re
             // Otherwise use the closest bucket
             buckets[minIndex].count += 1;
         }
+        colourTotal += 1;
     }
-    import std.stdio;
     // Penalize blacks by cutting their counts by a fixed percent, to effectively ignore outlines
     enum maxColourNorm = Pixel(ubyte.max, ubyte.max, ubyte.max, ubyte.max).norm;
-    enum blandColourPenaltyPercent = 0.5f;
     foreach (ref bucket; buckets[0 .. bucketCount]) {
-        auto norm = bucket.colour.norm;
-        if (norm < maxColourNorm * 0.55f) {
-            bucket.count = cast(int) (bucket.count * blandColourPenaltyPercent);
+        if (bucket.colour.norm < maxColourNorm * 0.55f) {
+            bucket.count = bucket.count / 16;
         }
     }
     // Sort colours by decending occurence
@@ -251,68 +249,168 @@ void findPrimaryColourPair(size_t id, ref IconPixels icon, ref Pixel colourA, re
         assert (0, "what");
     }
     // If there's only two colours, then they are the two primary ones
-    auto firstBucket = buckets[0];
-    colourA = firstBucket.colour;
     if (bucketCount == 2) {
+        colourA = buckets[0].colour;
         colourB = buckets[1].colour;
         return;
     }
-    // Otherwise we average out the most used colour and any other close to it
-    enum acceptableError = 0.05f;
-    enum maxColourDistance = Pixel(ubyte.max, ubyte.max, ubyte.max, 0).norm;
-    auto colourACloseCount = 1;
-    foreach (bucket; buckets[1 .. bucketCount]) {
-        if (bucket.count / cast(float) firstBucket.count < acceptableError
-                && (bucket.colour - firstBucket.colour).norm / maxColourDistance < acceptableError) {
-            colourA += bucket.colour;
-            colourACloseCount += 1;
+    // Use the most use colour for the first
+    colourA = buckets[0].colour;
+    // Ignore the least used colours
+    Bucket[] bestBuckets;
+    foreach (bucket; buckets[0 .. bucketCount]) {
+        if (cast(float) bucket.count / colourTotal >= 0.02f) {
+            bestBuckets ~= bucket;
         }
     }
-    colourA /= colourACloseCount;
-    // Pick a second colour,
+    // Pick a second colour, with the most hue difference
     auto hsvA = colourA.rgb2hsv();
-    if (id == 149) writeln(colourA.rgb2hsv());
-
     auto maxDiff = -1f;
-    size_t maxIndex = -1;
-    foreach (i, bucket; buckets[0 .. bucketCount]) {
+    size_t maxIndex = 1;
+    foreach (i, bucket; bestBuckets) {
         auto hsvC = bucket.colour.rgb2hsv();
+        // If the first colour has low value then avoid colours with even lower values
+        if (hsvA.v < 0.2f && hsvC.v < hsvA.v + 0.1f) {
+            continue;
+        }
+        // If the first colour is saturated, then avoid unsaturated second colours
+        if (hsvA.s > 0.5f && hsvC.s < 0.1f) {
+            continue;
+        }
+        // If the first colour is unsaturated, then avoid unsaturated second colours
+        if (hsvA.s < 0.1f && hsvC.s < 0.5f) {
+            continue;
+        }
+        // Avoid unsaturated colours that aren't used much
+        if (i >= 4 && hsvC.s < 0.1f) {
+            continue;
+        }
+        // Avoid low value colours that aren't used much
+        if (i >= 6 && hsvC.v > 0.3f) {
+            continue;
+        }
+        // The hue difference is that of the angles
         auto diff = angleDiff(hsvA.h, hsvC.h);
         if (diff > maxDiff) {
             maxIndex = i;
             maxDiff = diff;
         }
     }
-    colourB = buckets[maxIndex].colour;
+    colourB = bestBuckets[maxIndex].colour;
 
-    auto iconSlice = ICON_SIZE / bucketCount;
-    foreach (i; 0 .. bucketCount) {
+    auto iconSlice = ICON_SIZE / bestBuckets.length;
+    foreach (i, bucket; bestBuckets) {
         foreach (xx; 0 .. iconSlice) {
             auto x = i * iconSlice + xx;
             foreach (y; 0 .. ICON_SIZE / 2) {
-                icon[x + y * ICON_SIZE] = buckets[i].colour;
+                if (icon[x + y * ICON_SIZE].a != 0) {
+                    continue;
+                }
+                icon[x + y * ICON_SIZE] = bucket.colour;
             }
         }
     }
-    foreach (x; 0 .. ICON_SIZE / 2) {
-        foreach (y; ICON_SIZE / 2 .. ICON_SIZE) {
-            icon[x + y * ICON_SIZE] = colourA;
-            icon[x + ICON_SIZE / 2 + y * ICON_SIZE] = colourB;
+    foreach (y; ICON_SIZE / 2 .. ICON_SIZE) {
+        foreach (x; 0 .. ICON_SIZE / 2) {
+            if (icon[x + y * ICON_SIZE].a == 0) {
+                icon[x + y * ICON_SIZE] = colourA;
+            }
+            if (icon[x + ICON_SIZE / 2 + y * ICON_SIZE].a == 0) {
+                icon[x + ICON_SIZE / 2 + y * ICON_SIZE] = colourB;
+            }
         }
     }
 }
 
-string saveIcon(size_t id, ref IconPixels icon, string outputDir) {
-    auto bitmap = FreeImage_Allocate(ICON_SIZE, ICON_SIZE, 32,
-            FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
+Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixel colourB,
+        ref int width, ref int height) {
+    auto dname = name.to!dstring();
+    // Draw the name into a buffer
+    auto size = font.textSize(dname);
+    auto buffer = new GrayDrawBuf(size.x, size.y);
+    font.drawText(buffer, 0, 0, dname, 0xFF);
 
-    auto pixelSize = FreeImage_GetLine(bitmap) / ICON_SIZE;
+    enum borderSize = 20;
 
+    width = size.x + borderSize;
+    height = size.y + borderSize;
+
+    Pixel[] icon;
+    icon.length = width * height;
+
+    foreach (yy; 0 .. height) {
+        foreach (xx; 0 .. width) {
+            icon[xx + yy * width] = xx < width / 2 ? colourA : colourB;
+        }
+    }
+
+    foreach (yy; 0 .. size.y) {
+        auto y = yy + borderSize / 2;
+        auto scanLine = buffer.scanLine(yy);
+        foreach (xx; 0 .. size.x) {
+            auto x = xx + borderSize / 2;
+            auto textValue = cast(float) scanLine[xx] / ubyte.max;
+            auto pixelAddress = icon.ptr + (x + y * width);
+            auto blendedPixel = Pixel(0xFF, 0xFF, 0xFF) * (1 - textValue);
+            blendedPixel.a = 1;
+            *pixelAddress = blendedPixel;
+        }
+    }
+
+    return icon;
+}
+
+string[size_t] loadPokemonNames(string pokedexFile = "pokedex.csv") {
+    string[size_t] nameById;
+    foreach (record; csvReader!(string[string])(pokedexFile.readText(), null)) {
+        auto natId = record["Nat"];
+        if (natId.canFind(".")) {
+            continue;
+        }
+        auto mainId = natId.to!size_t();
+        auto mainName = record["Pokemon"].findSplitBefore(" (")[0];
+        nameById[mainId] = mainName;
+    }
+    return nameById;
+}
+
+void loadIcon(string spriteFile, ref IconPixels destination) {
+    FIBITMAP *bitmap = FreeImage_Load(FIF_PNG, spriteFile.toStringz());
+    assert (bitmap);
+
+    auto width = FreeImage_GetWidth(bitmap);
+    auto height = FreeImage_GetHeight(bitmap);
+    assert (width >= ICON_SIZE);
+    assert (height >= ICON_SIZE);
+
+    auto pixelSize = FreeImage_GetLine(bitmap) / width;
     foreach (y; 0 .. ICON_SIZE) {
         auto line = FreeImage_GetScanLine(bitmap, y);
-
         foreach (x; 0 .. ICON_SIZE) {
-            auto pixel = icon[x + (ICON_SIZE - 1 - y) * ICON_SIZE];
+            destination[x + (ICON_SIZE - 1 - y) * ICON_SIZE] =
+                    Pixel(line[FI_RGBA_RED], line[FI_RGBA_GREEN], line[FI_RGBA_BLUE]);
+            line += pixelSize;
+        }
+    }
+
+    FreeImage_Unload(bitmap);
+}
+
+string saveIcon(size_t id, ref IconPixels icon, string outputDir) {
+    return saveIcon(id, icon[], ICON_SIZE, ICON_SIZE, outputDir);
+}
+
+string saveIcon(size_t id, Pixel[] icon, int width, int height, string outputDir) {
+    auto bitmap = FreeImage_Allocate(width, height, 32,
+            FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
+
+    auto pixelSize = FreeImage_GetLine(bitmap) / width;
+
+    foreach (y; 0 .. height) {
+        auto line = FreeImage_GetScanLine(bitmap, y);
+
+        foreach (x; 0 .. width) {
+            auto pixel = icon[x + (height - 1 - y) * width];
             line[FI_RGBA_RED] = pixel.toUbyte!"r";
             line[FI_RGBA_GREEN] = pixel.toUbyte!"g";
             line[FI_RGBA_BLUE] = pixel.toUbyte!"b";
@@ -363,9 +461,9 @@ Pixel rgb2hsv(Pixel rgb) {
     if (rgb.r >= max) {
         hsv.h = (rgb.g - rgb.b) / delta;
     } else if (rgb.g >= max) {
-        hsv.h = 2 + ( rgb.b - rgb.r ) / delta;
+        hsv.h = 2 + ( rgb.b - rgb.r) / delta;
     } else {
-        hsv.h = 4 + ( rgb.r - rgb.g ) / delta;
+        hsv.h = 4 + ( rgb.r - rgb.g) / delta;
     }
     hsv.h *= 60;
 
@@ -377,5 +475,11 @@ Pixel rgb2hsv(Pixel rgb) {
 }
 
 float angleDiff(float a, float b) {
+    a = a.degToRag();
+    b = b.degToRag();
 	return abs(acos(cos(a) * cos(b) + sin(a) * sin(b)));
+}
+
+float degToRag(float deg) {
+    return deg * (PI / 180);
 }

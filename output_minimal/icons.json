@@ -1,0 +1,755 @@
+{
+    "id1": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/1.png"
+    },
+    "id10": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/10.png"
+    },
+    "id100": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/100.png"
+    },
+    "id101": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/101.png"
+    },
+    "id102": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/102.png"
+    },
+    "id103": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/103.png"
+    },
+    "id104": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/104.png"
+    },
+    "id105": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/105.png"
+    },
+    "id106": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/106.png"
+    },
+    "id107": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/107.png"
+    },
+    "id108": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/108.png"
+    },
+    "id109": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/109.png"
+    },
+    "id11": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/11.png"
+    },
+    "id110": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/110.png"
+    },
+    "id111": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/111.png"
+    },
+    "id112": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/112.png"
+    },
+    "id113": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/113.png"
+    },
+    "id114": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/114.png"
+    },
+    "id115": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/115.png"
+    },
+    "id116": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/116.png"
+    },
+    "id117": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/117.png"
+    },
+    "id118": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/118.png"
+    },
+    "id119": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/119.png"
+    },
+    "id12": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/12.png"
+    },
+    "id120": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/120.png"
+    },
+    "id121": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/121.png"
+    },
+    "id122": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/122.png"
+    },
+    "id123": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/123.png"
+    },
+    "id124": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/124.png"
+    },
+    "id125": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/125.png"
+    },
+    "id126": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/126.png"
+    },
+    "id127": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/127.png"
+    },
+    "id128": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/128.png"
+    },
+    "id129": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/129.png"
+    },
+    "id13": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/13.png"
+    },
+    "id130": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/130.png"
+    },
+    "id131": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/131.png"
+    },
+    "id132": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/132.png"
+    },
+    "id133": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/133.png"
+    },
+    "id134": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/134.png"
+    },
+    "id135": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/135.png"
+    },
+    "id136": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/136.png"
+    },
+    "id137": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/137.png"
+    },
+    "id138": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/138.png"
+    },
+    "id139": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/139.png"
+    },
+    "id14": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/14.png"
+    },
+    "id140": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/140.png"
+    },
+    "id141": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/141.png"
+    },
+    "id142": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/142.png"
+    },
+    "id143": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/143.png"
+    },
+    "id144": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/144.png"
+    },
+    "id145": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/145.png"
+    },
+    "id146": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/146.png"
+    },
+    "id147": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/147.png"
+    },
+    "id148": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/148.png"
+    },
+    "id149": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/149.png"
+    },
+    "id15": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/15.png"
+    },
+    "id150": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/150.png"
+    },
+    "id151": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/151.png"
+    },
+    "id152": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/152.png"
+    },
+    "id153": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/153.png"
+    },
+    "id154": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/154.png"
+    },
+    "id155": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/155.png"
+    },
+    "id156": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/156.png"
+    },
+    "id157": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/157.png"
+    },
+    "id158": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/158.png"
+    },
+    "id159": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/159.png"
+    },
+    "id16": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/16.png"
+    },
+    "id160": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/160.png"
+    },
+    "id161": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/161.png"
+    },
+    "id162": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/162.png"
+    },
+    "id163": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/163.png"
+    },
+    "id164": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/164.png"
+    },
+    "id165": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/165.png"
+    },
+    "id166": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/166.png"
+    },
+    "id167": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/167.png"
+    },
+    "id168": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/168.png"
+    },
+    "id169": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/169.png"
+    },
+    "id17": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/17.png"
+    },
+    "id170": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/170.png"
+    },
+    "id171": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/171.png"
+    },
+    "id172": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/172.png"
+    },
+    "id173": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/173.png"
+    },
+    "id174": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/174.png"
+    },
+    "id175": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/175.png"
+    },
+    "id176": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/176.png"
+    },
+    "id177": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/177.png"
+    },
+    "id178": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/178.png"
+    },
+    "id179": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/179.png"
+    },
+    "id18": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/18.png"
+    },
+    "id180": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/180.png"
+    },
+    "id181": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/181.png"
+    },
+    "id182": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/182.png"
+    },
+    "id183": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/183.png"
+    },
+    "id184": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/184.png"
+    },
+    "id185": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/185.png"
+    },
+    "id186": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/186.png"
+    },
+    "id187": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/187.png"
+    },
+    "id188": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/188.png"
+    },
+    "id189": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/189.png"
+    },
+    "id19": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/19.png"
+    },
+    "id190": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/190.png"
+    },
+    "id191": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/191.png"
+    },
+    "id192": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/192.png"
+    },
+    "id193": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/193.png"
+    },
+    "id194": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/194.png"
+    },
+    "id195": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/195.png"
+    },
+    "id196": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/196.png"
+    },
+    "id197": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/197.png"
+    },
+    "id198": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/198.png"
+    },
+    "id199": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/199.png"
+    },
+    "id2": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/2.png"
+    },
+    "id20": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/20.png"
+    },
+    "id200": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/200.png"
+    },
+    "id201": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/201.png"
+    },
+    "id202": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/202.png"
+    },
+    "id203": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/203.png"
+    },
+    "id204": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/204.png"
+    },
+    "id205": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/205.png"
+    },
+    "id206": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/206.png"
+    },
+    "id207": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/207.png"
+    },
+    "id208": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/208.png"
+    },
+    "id209": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/209.png"
+    },
+    "id21": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/21.png"
+    },
+    "id210": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/210.png"
+    },
+    "id211": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/211.png"
+    },
+    "id212": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/212.png"
+    },
+    "id213": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/213.png"
+    },
+    "id214": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/214.png"
+    },
+    "id215": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/215.png"
+    },
+    "id216": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/216.png"
+    },
+    "id217": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/217.png"
+    },
+    "id218": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/218.png"
+    },
+    "id219": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/219.png"
+    },
+    "id22": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/22.png"
+    },
+    "id220": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/220.png"
+    },
+    "id221": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/221.png"
+    },
+    "id222": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/222.png"
+    },
+    "id223": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/223.png"
+    },
+    "id224": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/224.png"
+    },
+    "id225": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/225.png"
+    },
+    "id226": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/226.png"
+    },
+    "id227": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/227.png"
+    },
+    "id228": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/228.png"
+    },
+    "id229": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/229.png"
+    },
+    "id23": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/23.png"
+    },
+    "id230": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/230.png"
+    },
+    "id231": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/231.png"
+    },
+    "id232": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/232.png"
+    },
+    "id233": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/233.png"
+    },
+    "id234": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/234.png"
+    },
+    "id235": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/235.png"
+    },
+    "id236": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/236.png"
+    },
+    "id237": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/237.png"
+    },
+    "id238": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/238.png"
+    },
+    "id239": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/239.png"
+    },
+    "id24": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/24.png"
+    },
+    "id240": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/240.png"
+    },
+    "id241": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/241.png"
+    },
+    "id242": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/242.png"
+    },
+    "id243": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/243.png"
+    },
+    "id244": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/244.png"
+    },
+    "id245": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/245.png"
+    },
+    "id246": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/246.png"
+    },
+    "id247": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/247.png"
+    },
+    "id248": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/248.png"
+    },
+    "id249": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/249.png"
+    },
+    "id25": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/25.png"
+    },
+    "id250": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/250.png"
+    },
+    "id251": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/251.png"
+    },
+    "id26": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/26.png"
+    },
+    "id27": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/27.png"
+    },
+    "id28": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/28.png"
+    },
+    "id29": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/29.png"
+    },
+    "id3": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/3.png"
+    },
+    "id30": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/30.png"
+    },
+    "id31": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/31.png"
+    },
+    "id32": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/32.png"
+    },
+    "id33": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/33.png"
+    },
+    "id34": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/34.png"
+    },
+    "id35": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/35.png"
+    },
+    "id36": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/36.png"
+    },
+    "id37": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/37.png"
+    },
+    "id38": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/38.png"
+    },
+    "id39": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/39.png"
+    },
+    "id4": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/4.png"
+    },
+    "id40": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/40.png"
+    },
+    "id41": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/41.png"
+    },
+    "id42": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/42.png"
+    },
+    "id43": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/43.png"
+    },
+    "id44": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/44.png"
+    },
+    "id45": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/45.png"
+    },
+    "id46": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/46.png"
+    },
+    "id47": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/47.png"
+    },
+    "id48": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/48.png"
+    },
+    "id49": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/49.png"
+    },
+    "id5": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/5.png"
+    },
+    "id50": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/50.png"
+    },
+    "id51": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/51.png"
+    },
+    "id52": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/52.png"
+    },
+    "id53": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/53.png"
+    },
+    "id54": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/54.png"
+    },
+    "id55": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/55.png"
+    },
+    "id56": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/56.png"
+    },
+    "id57": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/57.png"
+    },
+    "id58": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/58.png"
+    },
+    "id59": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/59.png"
+    },
+    "id6": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/6.png"
+    },
+    "id60": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/60.png"
+    },
+    "id61": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/61.png"
+    },
+    "id62": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/62.png"
+    },
+    "id63": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/63.png"
+    },
+    "id64": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/64.png"
+    },
+    "id65": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/65.png"
+    },
+    "id66": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/66.png"
+    },
+    "id67": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/67.png"
+    },
+    "id68": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/68.png"
+    },
+    "id69": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/69.png"
+    },
+    "id7": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/7.png"
+    },
+    "id70": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/70.png"
+    },
+    "id71": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/71.png"
+    },
+    "id72": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/72.png"
+    },
+    "id73": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/73.png"
+    },
+    "id74": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/74.png"
+    },
+    "id75": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/75.png"
+    },
+    "id76": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/76.png"
+    },
+    "id77": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/77.png"
+    },
+    "id78": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/78.png"
+    },
+    "id79": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/79.png"
+    },
+    "id8": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/8.png"
+    },
+    "id80": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/80.png"
+    },
+    "id81": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/81.png"
+    },
+    "id82": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/82.png"
+    },
+    "id83": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/83.png"
+    },
+    "id84": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/84.png"
+    },
+    "id85": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/85.png"
+    },
+    "id86": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/86.png"
+    },
+    "id87": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/87.png"
+    },
+    "id88": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/88.png"
+    },
+    "id89": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/89.png"
+    },
+    "id9": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/9.png"
+    },
+    "id90": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/90.png"
+    },
+    "id91": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/91.png"
+    },
+    "id92": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/92.png"
+    },
+    "id93": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/93.png"
+    },
+    "id94": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/94.png"
+    },
+    "id95": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/95.png"
+    },
+    "id96": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/96.png"
+    },
+    "id97": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/97.png"
+    },
+    "id98": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/98.png"
+    },
+    "id99": {
+        "url": "https:\/\/raw.githubusercontent.com\/DDoS\/sprite-icons\/master\/output_minimal\/99.png"
+    }
+}
