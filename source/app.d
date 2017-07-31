@@ -13,6 +13,7 @@ import std.algorithm.comparison : max;
 import derelict.freeimage.freeimage;
 
 import dlangui.platforms.common.startup : initResourceManagers, initFontManager;
+import dlangui.core.types : SubpixelRenderingMode;
 import dlangui.graphics.drawbuf : ColorDrawBuf;
 import dlangui.graphics.fonts : Font, FontManager, FontWeight, FontFamily;
 
@@ -141,22 +142,24 @@ void createMinimalIcons(string sourceDir, string outputDir) {
     auto nameById = loadPokemonNames();
     initResourceManagers();
     initFontManager();
-    import dlangui.core.types : SubpixelRenderingMode;
+
     FontManager.subpixelRenderingMode = SubpixelRenderingMode.RGB;
-    auto font = FontManager.instance.getFont(12, 100, false, FontFamily.SansSerif, "Helvetica Neue");
+    auto font = FontManager.instance.getFont(24, FontWeight.Normal, false, FontFamily.SansSerif, "Andale Mono");
+    import std.stdio; writeln(font.face);
+    auto maxTextSize = font.textSize("AAAAAA");
+    auto iconSize = max(maxTextSize.x, maxTextSize.y);
 
     string[size_t] idToFile;
 
     void convertIcon(size_t id, ref IconPixels icon) {
         if (id != 1) {
-        //    return;
+            return;
         }
         makeTransparent(icon);
         Pixel colourA, colourB;
         findPrimaryColourPair(id, icon, colourA, colourB);
-        int width, height;
-        auto minimalIcon = createMinimalIcon(id, nameById[id], font, colourA, colourB, width, height);
-        idToFile[id] = saveIcon(id, minimalIcon, width, height, outputDir);
+        auto minimalIcon = createMinimalIcon(id, nameById[id], font, colourA, colourB, iconSize);
+        idToFile[id] = saveIcon(id, minimalIcon, iconSize, outputDir);
     }
 
     sourceDir.buildPath("GenI").processGenIcons!convertIcon();
@@ -325,44 +328,47 @@ void findPrimaryColourPair(size_t id, ref IconPixels icon, ref Pixel colourA, re
     }
 }
 
-Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixel colourB,
-        ref int width, ref int height) {
-    auto dname = name.to!dstring();
-    // Draw the name into a buffer
-    auto size = font.textSize(dname);
-    auto buffer = new ColorDrawBuf(size.x, size.y);
-    buffer.fill(0xFFFFFF);
-    font.drawText(buffer, 0, 0, dname, 0x0);
-    buffer.invertAlpha();
-
-    auto squareSize = max(size.x, size.y);
-
-    enum borderSize = 0;
-
-    width = squareSize + borderSize;
-    height = squareSize + borderSize;
-
+Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixel colourB, int iconSize) {
     Pixel[] icon;
-    icon.length = width * height;
-
-    foreach (yy; 0 .. height) {
-        foreach (xx; 0 .. width) {
-            icon[xx + yy * width] = xx < width / 2 ? colourA : colourB;
+    icon.length = iconSize * iconSize;
+    foreach (yy; 0 .. iconSize) {
+        foreach (xx; 0 .. iconSize) {
+            icon[xx + yy * iconSize] = xx < iconSize / 2 ? colourA : colourB;
         }
     }
 
-    foreach (yy; 0 .. size.y) {
-        auto y = yy - size.y / 2 + height / 2;
-        auto scanLine = buffer.scanLine(yy);
-        foreach (xx; 0 .. size.x) {
-            auto x = xx - size.x / 2 + width / 2;
-            auto textArgb = scanLine[xx];
-            auto pixelAddress = icon.ptr + (x + y * width);
-            *pixelAddress = Pixel(textArgb >>> 16, textArgb >>> 8, textArgb, textArgb >>> 24);
-        }
+    enum maxLineLength = 6;
+    auto twoLines = name.length > maxLineLength;
+    auto firstLine = name[0 .. twoLines ? ($ + 1) / 2 : $];
+    auto lineHeight = font.textSize(firstLine.to!dstring()).y;
+    firstLine.drawText(font, icon, iconSize, iconSize / 2, iconSize / 2 - (twoLines ? lineHeight / 2 : 0));
+    if (twoLines) {
+        auto secondLine = name[$ - $ / 2 .. $];
+        secondLine.drawText(font, icon, iconSize, iconSize / 2, iconSize / 2 + lineHeight / 2);
     }
 
     return icon;
+}
+
+void drawText(string text, Font font, Pixel[] icon, int size, int x, int y) {
+    // Draw the text to a buffer
+    auto dtext = text.to!dstring();
+    auto textSize = font.textSize(dtext);
+    auto buffer = new ColorDrawBuf(textSize.x, textSize.y);
+    buffer.fill(0xFFFFFF);
+    font.drawText(buffer, 0, 0, dtext, 0x0);
+    buffer.invertAlpha();
+    // Copy the buffer to the icon
+    foreach (yy; 0 .. textSize.y) {
+        auto py = y + yy - textSize.y / 2;
+        auto scanLine = buffer.scanLine(yy);
+        foreach (xx; 0 .. textSize.x) {
+            auto px = x + xx - textSize.x / 2;
+            auto textArgb = scanLine[xx];
+            auto pixelAddress = icon.ptr + (px + py * size);
+            *pixelAddress = Pixel(textArgb >>> 16, textArgb >>> 8, textArgb, textArgb >>> 24);
+        }
+    }
 }
 
 string[size_t] loadPokemonNames(string pokedexFile = "pokedex.csv") {
@@ -402,20 +408,20 @@ void loadIcon(string spriteFile, ref IconPixels destination) {
 }
 
 string saveIcon(size_t id, ref IconPixels icon, string outputDir) {
-    return saveIcon(id, icon[], ICON_SIZE, ICON_SIZE, outputDir);
+    return saveIcon(id, icon[], ICON_SIZE, outputDir);
 }
 
-string saveIcon(size_t id, Pixel[] icon, int width, int height, string outputDir) {
-    auto bitmap = FreeImage_Allocate(width, height, 32,
+string saveIcon(size_t id, Pixel[] icon, int size, string outputDir) {
+    auto bitmap = FreeImage_Allocate(size, size, 32,
             FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 
-    auto pixelSize = FreeImage_GetLine(bitmap) / width;
+    auto pixelSize = FreeImage_GetLine(bitmap) / size;
 
-    foreach (y; 0 .. height) {
+    foreach (y; 0 .. size) {
         auto line = FreeImage_GetScanLine(bitmap, y);
 
-        foreach (x; 0 .. width) {
-            auto pixel = icon[x + (height - 1 - y) * width];
+        foreach (x; 0 .. size) {
+            auto pixel = icon[x + (size - 1 - y) * size];
             line[FI_RGBA_RED] = pixel.toUbyte!"r";
             line[FI_RGBA_GREEN] = pixel.toUbyte!"g";
             line[FI_RGBA_BLUE] = pixel.toUbyte!"b";
