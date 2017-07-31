@@ -8,11 +8,12 @@ import std.csv : csvReader;
 import std.math : PI, sqrt, abs, sin, cos, acos;
 import std.algorithm.searching : canFind, findSplitBefore;
 import std.algorithm.sorting : sort;
+import std.algorithm.comparison : max;
 
 import derelict.freeimage.freeimage;
 
 import dlangui.platforms.common.startup : initResourceManagers, initFontManager;
-import dlangui.graphics.drawbuf : GrayDrawBuf;
+import dlangui.graphics.drawbuf : ColorDrawBuf;
 import dlangui.graphics.fonts : Font, FontManager, FontWeight, FontFamily;
 
 enum ICON_SIZE = 64;
@@ -35,10 +36,10 @@ struct Pixel {
     alias v = b;
 
     this(int r, int g, int b, int a = ubyte.max) {
-        this.r = cast(float) r / ubyte.max;
-        this.g = cast(float) g / ubyte.max;
-        this.b = cast(float) b / ubyte.max;
-        this.a = cast(float) a / ubyte.max;
+        this.r = cast(float) (r & 0xFF) / ubyte.max;
+        this.g = cast(float) (g & 0xFF) / ubyte.max;
+        this.b = cast(float) (b & 0xFF) / ubyte.max;
+        this.a = cast(float) (a & 0xFF) / ubyte.max;
     }
 
     this(float r, float g, float b, float a = 1) {
@@ -140,7 +141,9 @@ void createMinimalIcons(string sourceDir, string outputDir) {
     auto nameById = loadPokemonNames();
     initResourceManagers();
     initFontManager();
-    auto font = FontManager.instance.getFont(12, FontWeight.Normal, false, FontFamily.SansSerif, "Helvetica Neue Light");
+    import dlangui.core.types : SubpixelRenderingMode;
+    FontManager.subpixelRenderingMode = SubpixelRenderingMode.RGB;
+    auto font = FontManager.instance.getFont(12, 100, false, FontFamily.SansSerif, "Helvetica Neue");
 
     string[size_t] idToFile;
 
@@ -327,13 +330,17 @@ Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixe
     auto dname = name.to!dstring();
     // Draw the name into a buffer
     auto size = font.textSize(dname);
-    auto buffer = new GrayDrawBuf(size.x, size.y);
-    font.drawText(buffer, 0, 0, dname, 0xFF);
+    auto buffer = new ColorDrawBuf(size.x, size.y);
+    buffer.fill(0xFFFFFF);
+    font.drawText(buffer, 0, 0, dname, 0x0);
+    buffer.invertAlpha();
 
-    enum borderSize = 20;
+    auto squareSize = max(size.x, size.y);
 
-    width = size.x + borderSize;
-    height = size.y + borderSize;
+    enum borderSize = 0;
+
+    width = squareSize + borderSize;
+    height = squareSize + borderSize;
 
     Pixel[] icon;
     icon.length = width * height;
@@ -345,15 +352,13 @@ Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixe
     }
 
     foreach (yy; 0 .. size.y) {
-        auto y = yy + borderSize / 2;
+        auto y = yy - size.y / 2 + height / 2;
         auto scanLine = buffer.scanLine(yy);
         foreach (xx; 0 .. size.x) {
-            auto x = xx + borderSize / 2;
-            auto textValue = cast(float) scanLine[xx] / ubyte.max;
+            auto x = xx - size.x / 2 + width / 2;
+            auto textArgb = scanLine[xx];
             auto pixelAddress = icon.ptr + (x + y * width);
-            auto blendedPixel = Pixel(0xFF, 0xFF, 0xFF) * (1 - textValue);
-            blendedPixel.a = 1;
-            *pixelAddress = blendedPixel;
+            *pixelAddress = Pixel(textArgb >>> 16, textArgb >>> 8, textArgb, textArgb >>> 24);
         }
     }
 
