@@ -6,6 +6,8 @@ import std.conv : to;
 import std.json : JSONValue;
 import std.csv : csvReader;
 import std.math : PI, sqrt, abs, sin, cos, acos;
+import std.random : Random, uniform;
+import std.array : replicate;
 import std.algorithm.searching : canFind, findSplitBefore;
 import std.algorithm.sorting : sort;
 import std.algorithm.comparison : max;
@@ -13,18 +15,19 @@ import std.algorithm.comparison : max;
 import derelict.freeimage.freeimage;
 
 import dlangui.platforms.common.startup : initResourceManagers, initFontManager;
-import dlangui.core.types : SubpixelRenderingMode;
 import dlangui.graphics.drawbuf : ColorDrawBuf;
 import dlangui.graphics.fonts : Font, FontManager, FontWeight, FontFamily;
 
 enum ICON_SIZE = 64;
+
+enum MAX_NAME_LENGTH = 12;
 
 enum REPO_USER = "DDoS";
 enum REPO_NAME = "sprite-icons";
 enum GH_REPO_RAW_FORMAT = "https://raw.githubusercontent.com/" ~ REPO_USER ~ "/"
         ~ REPO_NAME ~ "/master/%s";
 
-alias IconPixels = Pixel[ICON_SIZE * ICON_SIZE];
+alias IconPixels = Pixel[ICON_SIZE ^^ 2];
 
 struct Pixel {
     float r = 0;
@@ -143,28 +146,31 @@ void createMinimalIcons(string sourceDir, string outputDir) {
     initResourceManagers();
     initFontManager();
 
-    FontManager.subpixelRenderingMode = SubpixelRenderingMode.RGB;
-    auto font = FontManager.instance.getFont(24, FontWeight.Normal, false, FontFamily.SansSerif, "Andale Mono");
-    import std.stdio; writeln(font.face);
-    auto maxTextSize = font.textSize("AAAAAA");
-    auto iconSize = max(maxTextSize.x, maxTextSize.y);
+    auto font = FontManager.instance.getFont(24, FontWeight.Bold, false, FontFamily.SansSerif, "Ubuntu Mono");
+    auto maxTextSize = font.textSize("A"d.replicate(MAX_NAME_LENGTH / 2));
+    auto squareSize = max(maxTextSize.x, maxTextSize.y);
+    auto margin = cast(int) (squareSize * 0.1);
+    auto iconSize = squareSize + margin * 2;
 
     string[size_t] idToFile;
 
     void convertIcon(size_t id, ref IconPixels icon) {
-        if (id != 1) {
-            return;
-        }
         makeTransparent(icon);
         Pixel colourA, colourB;
         findPrimaryColourPair(id, icon, colourA, colourB);
-        auto minimalIcon = createMinimalIcon(id, nameById[id], font, colourA, colourB, iconSize);
+        auto minimalIcon = createMinimalIcon(id, nameById[id], font, colourA, colourB, iconSize, margin);
         idToFile[id] = saveIcon(id, minimalIcon, iconSize, outputDir);
     }
 
     sourceDir.buildPath("GenI").processGenIcons!convertIcon();
     sourceDir.buildPath("GenII").processGenIcons!convertIcon();
     //sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
+
+    foreach (i; 1 .. 252) {
+        if (i !in idToFile) {
+            throw new Exception(format("Missing ID: %d", i));
+        }
+    }
 
     auto json = createJson(idToFile);
     outputDir.buildPath("icons.json").write(json);
@@ -195,7 +201,7 @@ void processGenIcons(alias processor)(string sourceDir) {
 void makeTransparent(ref IconPixels icon) {
     // We'll asume that the bottom right corner is always a background pixel
     auto transparent = icon[0];
-    foreach (i; 0 .. ICON_SIZE * ICON_SIZE) {
+    foreach (i; 0 .. ICON_SIZE ^^ 2) {
         if (icon[i] == transparent) {
             icon[i].a = 0;
         }
@@ -211,7 +217,7 @@ void findPrimaryColourPair(size_t id, ref IconPixels icon, ref Pixel colourA, re
     Bucket[maxBuckets] buckets;
     auto bucketCount = 0;
     auto colourTotal = 0;
-    foreach (i; 0 .. ICON_SIZE * ICON_SIZE) {
+    foreach (i; 0 .. ICON_SIZE ^^ 2) {
         auto pixel = icon[i];
         if (pixel.a == 0) {
             // Skip transparent pixels
@@ -303,37 +309,49 @@ void findPrimaryColourPair(size_t id, ref IconPixels icon, ref Pixel colourA, re
         }
     }
     colourB = bestBuckets[maxIndex].colour;
-
-    auto iconSlice = ICON_SIZE / bestBuckets.length;
-    foreach (i, bucket; bestBuckets) {
-        foreach (xx; 0 .. iconSlice) {
-            auto x = i * iconSlice + xx;
-            foreach (y; 0 .. ICON_SIZE / 2) {
-                if (icon[x + y * ICON_SIZE].a != 0) {
-                    continue;
-                }
-                icon[x + y * ICON_SIZE] = bucket.colour;
-            }
-        }
-    }
-    foreach (y; ICON_SIZE / 2 .. ICON_SIZE) {
-        foreach (x; 0 .. ICON_SIZE / 2) {
-            if (icon[x + y * ICON_SIZE].a == 0) {
-                icon[x + y * ICON_SIZE] = colourA;
-            }
-            if (icon[x + ICON_SIZE / 2 + y * ICON_SIZE].a == 0) {
-                icon[x + ICON_SIZE / 2 + y * ICON_SIZE] = colourB;
-            }
-        }
-    }
 }
 
-Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixel colourB, int iconSize) {
+Pixel[] createMinimalIcon(size_t id, string name, Font font, Pixel colourA, Pixel colourB, int iconSize, int margin) {
     Pixel[] icon;
-    icon.length = iconSize * iconSize;
-    foreach (yy; 0 .. iconSize) {
-        foreach (xx; 0 .. iconSize) {
-            icon[xx + yy * iconSize] = xx < iconSize / 2 ? colourA : colourB;
+    icon.length = iconSize ^^ 2;
+
+    auto random = Random(cast(int) (id * 9438983));
+
+    auto drawSize = iconSize - margin * 2;
+    auto minRectSize = cast(int) (drawSize * 0.35);
+    auto aWidth = uniform(minRectSize, drawSize / 2, random);
+    auto aHeight = uniform(minRectSize, drawSize, random);
+    auto bWidth = uniform(minRectSize, drawSize / 2, random);
+    auto bHeight = uniform(minRectSize, drawSize, random);
+
+    alias ModCoord = int delegate(int c);
+    ModCoord intIdentity = (int c) => c;
+    ModCoord flipCord = (int c) => iconSize - 1 - c;
+
+    ModCoord axMod = void;
+    ModCoord ayMod = void;
+    ModCoord byMod = void;
+    if (uniform!ubyte(random) > 127) {
+        ayMod = intIdentity;
+        byMod = flipCord;
+    } else {
+        ayMod = flipCord;
+        byMod = intIdentity;
+    }
+
+    foreach (yy; 0 .. aHeight) {
+        auto y = ayMod(yy + margin);
+        foreach (xx; 0 .. aWidth) {
+            auto x = intIdentity(xx + margin);
+            icon[x + y * iconSize] = colourA;
+        }
+    }
+
+    foreach (yy; 0 .. bHeight) {
+        auto y = byMod(yy + margin);
+        foreach (xx; 0 .. bWidth) {
+            auto x = flipCord(xx + margin);
+            icon[x + y * iconSize] = colourB;
         }
     }
 

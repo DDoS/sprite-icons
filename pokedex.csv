@@ -27,10 +27,10 @@ Per,Nat,Pokemon,HP,Atk,Def,SpA,SpD,Spe,Total,Type I,Type II,Tier,Ability I,Abili
 27,26,Raichu,60,90,55,90,80,100,475,Electric,,NU,Static,,Lightningrod,30.0 kG,60,3 Spe,122,Yellow,,Neutral,Field,Fairy,75,1000000,Thunderstone,27,26,23,157,105,,Raichu
 28,27,Sandshrew,50,75,85,20,30,40,300,Ground,,NU,Sand Veil,,Sand Rush,12.0 kG,40,1 Def,93,Yellow,5120,Neutral,Field,,255,1000000,,28,27,48,112,,,Sandshrew
 29,28,Sandslash,75,100,110,45,55,65,450,Ground,,NU,Sand Veil,,Sand Rush,29.5 kG,60,2 Def,163,Yellow,,Neutral,Field,,90,1000000,Lv. 22,29,28,49,113,,,Sandslash
-30,29,Nidoran ♀,55,47,52,40,40,41,275,Poison,,NU,Poison Point,Rivalry,Hustle,7.0 kG,20,1 HP,59,Blue,5120,F (100%),Monster,Field,235,1059860,,30,29,95,,,,Nidoran ♀
+30,29,Nidoran F,55,47,52,40,40,41,275,Poison,,NU,Poison Point,Rivalry,Hustle,7.0 kG,20,1 HP,59,Blue,5120,F (100%),Monster,Field,235,1059860,,30,29,95,,,,Nidoran F
 31,30,Nidorina,70,62,67,55,55,56,365,Poison,,NU,Poison Point,Rivalry,Hustle,20.0 kG,40,2 HP,117,Blue,,F (100%),-,,120,1059860,Lv. 16,31,30,96,,,,Nidorina
 32,31,Nidoqueen,90,82,87,75,85,76,495,Poison,Ground,UU,Poison Point,Rivalry,Sheer Force,60.0 kG,80,3 HP,194,Blue,,F (100%),-,,45,1059860,Moon Stone,32,31,97,,,,Nidoqueen
-33,32,Nidoran ♂,46,57,40,40,40,50,273,Poison,,NU,Poison Point,Rivalry,Hustle,9.0 kG,20,1 Atk,60,Purple,5120,M (100%),Monster,Field,235,1059860,,33,32,98,,,,Nidoran ♂
+33,32,Nidoran M,46,57,40,40,40,50,273,Poison,,NU,Poison Point,Rivalry,Hustle,9.0 kG,20,1 Atk,60,Purple,5120,M (100%),Monster,Field,235,1059860,,33,32,98,,,,Nidoran M
 34,33,Nidorino,61,72,57,55,55,65,365,Poison,,NU,Poison Point,Rivalry,Hustle,19.5 kG,40,2 Atk,118,Purple,,M (100%),Monster,Field,120,1059860,Lv. 16,34,33,99,,,,Nidorino
 35,34,Nidoking,81,92,77,85,75,85,495,Poison,Ground,UU,Poison Point,Rivalry,Sheer Force,62.0 kG,80,3 Atk,195,Purple,,M (100%),Monster,Field,45,1059860,Moon Stone,35,34,100,,,,Nidoking
 37,35,Clefairy,70,45,48,60,65,35,323,Normal,,NU,Cute Charm,Magic Guard,Friend Guard,7.5 kG,20,2 HP,68,Pink,,F (75%),Fairy,,150,800000,Friendship,37,35,41,,100,,Clefairy
