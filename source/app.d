@@ -116,7 +116,8 @@ void main(string[] args) {
         outputDir.mkdirRecurse();
     }
 
-    createMinimalIcons(sourceDir, outputDir);
+    createIcons(sourceDir, outputDir);
+    //createMinimalIcons(sourceDir, outputDir);
 }
 
 void createIcons(string sourceDir, string outputDir) {
@@ -129,9 +130,9 @@ void createIcons(string sourceDir, string outputDir) {
 
     sourceDir.buildPath("GenI").processGenIcons!convertIcon();
     sourceDir.buildPath("GenII").processGenIcons!convertIcon();
-    //sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
+    sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
 
-    foreach (i; 1 .. 252) {
+    foreach (i; 1 .. 386) {
         if (i !in idToFile) {
             throw new Exception(format("Missing ID: %d", i));
         }
@@ -164,9 +165,9 @@ void createMinimalIcons(string sourceDir, string outputDir) {
 
     sourceDir.buildPath("GenI").processGenIcons!convertIcon();
     sourceDir.buildPath("GenII").processGenIcons!convertIcon();
-    //sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
+    sourceDir.buildPath("GenIII").processGenIcons!convertIcon();
 
-    foreach (i; 1 .. 252) {
+    foreach (i; 1 .. 386) {
         if (i !in idToFile) {
             throw new Exception(format("Missing ID: %d", i));
         }
